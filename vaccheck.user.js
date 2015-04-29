@@ -8,6 +8,7 @@
 // @match        http://steamcommunity.com/*/friends/coplay*
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js
 // @grant        none
+// @updateURL    https://scriptr.org/dl/vaccheck.user.js
 // ==/UserScript==
 
 var friends = $('.friendCheckbox').toArray();
