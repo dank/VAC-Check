@@ -10,7 +10,7 @@ You will need a userscript manager for your browser
 Chrome - [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)  
 Firefox - [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 
-Download: [Scriptr.org](https://scriptr.org/dl/vaccheck.user.js) (Should automatically install)
+Download: [Scriptr.org](https://scriptr.org/dl/vaccheck.user.js) (Should automatically install)  
 Mirror download can be found under the release tab.
 
 # License
