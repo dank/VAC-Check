@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VAC Check
 // @namespace    https://scriptr.org
-// @version      0.2
+// @version      0.4
 // @description  Easily see VAC bans on players you've played with in the past.
 // @author       Eyepawd
 // @contributor  Gat
@@ -16,7 +16,11 @@ var recent = $('.friendCheckbox2').toArray();
 
 recent.forEach(function(friend) {
     getPlayerBans(friend.outerHTML.match('friends\\[(.*?)\\]')[1], function(data) {
-        if(data.VACBanned)
+        if(data.VACBanned && data.NumberOfGameBans > 0)
+            $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+        else if(data.NumberOfGameBans > 0)
+            $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+        else if(data.VACBanned)
             $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
     });
 });
@@ -26,13 +30,21 @@ friends.forEach(function(friend) {
     if(url.indexOf("/profiles/") === -1 && (url.indexOf("/id/") != -1)) {
         resolveVanityURL(url.split("/id/")[1], function(id) {
             getPlayerBans(id, function(data) {
-                if(data.VACBanned)
+                if(data.VACBanned && data.NumberOfGameBans > 0)
+                    $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+                else if(data.NumberOfGameBans > 0)
+                    $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+                else if(data.VACBanned)
                     $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
             });
         });
     } else {
         getPlayerBans(url.split("/profiles/")[1], function(data) {
-            if(data.VACBanned)
+            if(data.VACBanned && data.NumberOfGameBans > 0)
+                $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+            else if(data.NumberOfGameBans > 0)
+                $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfGameBans + ' game ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
+            else if(data.VACBanned)
                 $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
         });
     }
