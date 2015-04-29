@@ -23,7 +23,7 @@ recent.forEach(function(friend) {
 
 friends.forEach(function(friend) {
     var url = friend.closest('div').outerHTML.match('top.location.href=\'(.*?)\'')[1];
-    if(url.indexOf("/profile/") === -1 && (url.indexOf("/id/") != -1)) {
+    if(url.indexOf("/profiles/") === -1 && (url.indexOf("/id/") != -1)) {
         resolveVanityURL(url.split("/id/")[1], function(id) {
             getPlayerBans(id, function(data) {
                 if(data.VACBanned)
