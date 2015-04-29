@@ -15,8 +15,7 @@ var friends = $('.friendCheckbox').toArray();
 var recent = $('.friendCheckbox2').toArray();
 
 recent.forEach(function(friend) {
-    var id = friend.outerHTML.match('friends\\[(.*?)\\]')[1];
-    getPlayerBans(id, function(data) {
+    getPlayerBans(friend.outerHTML.match('friends\\[(.*?)\\]')[1], function(data) {
         if(data.VACBanned)
             $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
     });
@@ -32,7 +31,7 @@ friends.forEach(function(friend) {
             });
         });
     } else {
-        getPlayerBans(url.split("/profile/")[1], function(data) {
+        getPlayerBans(url.split("/profiles/")[1], function(data) {
             if(data.VACBanned)
                 $('<span class="friendSmallText" style="display: block; color: rgb(255, 73, 73); font-weight: bold;">' + data.NumberOfVACBans + ' VAC ban(s); ' + data.DaysSinceLastBan + ' day(s) ago</span>').insertAfter($('.friendSmallText', friend.closest('div')));
         });
