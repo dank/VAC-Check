@@ -68,7 +68,7 @@ function resolveVanityURL(user, cb) {
 
 function getSingleBan(user, cb) {
     $.get('https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=' + api + '&steamids=' + user, function(data) {
-        return cb(data);
+        return cb(data.players[0]);
     });
 }
 
@@ -93,10 +93,10 @@ function getVanityBans(vanitypairs) {
 
     querylist.forEach(function(user) {
         resolveVanityURL(user, function(id) {
-            getSingleBan(id, function(data) {
+            getSingleBan(id, function(bans) {
                 var friend = vanitypairs.get(user)
                 friend.forEach(function(ele) {
-                    writehtml(ele, data);
+                    writehtml(ele, bans);
                 });
             });
         });
